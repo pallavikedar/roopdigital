@@ -110,7 +110,7 @@ export default function AdminDashboard() {
       await databases.createDocument(DB_ID, COLLECTION_ID, ID.unique(), {
         category,
         fileId: uploaded.$id,
-        fileUrl: `https://cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${uploaded.$id}/view?project=68c5199f0022f542138f`,
+        fileUrl: `https://fra.cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${uploaded.$id}/view?project=68c5199f0022f542138f`,
       })
       setMessage("✅ Image uploaded successfully!")
       setFile(null)
@@ -150,7 +150,7 @@ export default function AdminDashboard() {
         await storage.deleteFile(BUCKET_ID, img.fileId)
         const uploaded = await storage.createFile(BUCKET_ID, ID.unique(), file)
         updatedFileId = uploaded.$id
-        updatedFileUrl = `https://cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${uploaded.$id}/view?project=68c5199f0022f542138f`
+        updatedFileUrl = `https://fra.cloud.appwrite.io/v1/storage/buckets/${BUCKET_ID}/files/${uploaded.$id}/view?project=68c5199f0022f542138f`
         setFile(null)
       }
 
