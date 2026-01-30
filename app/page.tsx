@@ -275,7 +275,7 @@ export default function DigitalCard() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [selectedImage, setSelectedImage] = useState<string | null>(null)
   const [dynamicImages, setDynamicImages] = useState<{ [key: string]: string[] }>({})
-
+ const [open, setOpen] = useState(false);
   /* ================= CATALOG DATA ================= */
   const catalogItems: any = {
     newborn: {
@@ -337,7 +337,35 @@ export default function DigitalCard() {
     <div className="min-h-screen bg-[#FAFAF8] text-[#1F1F1F]">
 
       {/* ================= HEADER ================= */}
-     <header className="px-6 py-12 border-b border-[#E8DFC6] bg-[#FAFAF8]"> {/* Logo + Brand */} <div className="flex items-center justify-center gap-4 mb-4"> <div className="flex items-center justify-center w-20 h-20 rounded-full border border-[#E8DFC6] bg-white shadow-sm"> <Image src={logo} alt="Roops 3D Impressions Logo" width={56} height={56} className="object-contain" priority /> </div> <h1 className="text-2xl sm:text-3xl font-semibold tracking-wide text-[#1F1F1F] leading-tight"> ROOPS 3D<br /> <span className="text-[#C9A24D]">Impressions</span> </h1> </div> {/* Tagline */} <p className="text-center text-sm text-[#8B7A44] tracking-wide"> Fine Art 3D Casting Studio · Nagpur </p> {/* Divider */} <div className="mx-auto my-6 h-px w-24 bg-[#C9A24D]/40" /> {/* Action Buttons */} <div className="flex justify-center gap-3 flex-wrap"> <a href="https://wa.me/918600044482" className="px-6 py-2.5 rounded-full bg-[#1F1F1F] text-white text-sm font-medium hover:bg-[#C9A24D] transition" > WhatsApp </a> <a href="tel:+918600044482" className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition" > Call </a> <a href="https://instagram.com/roops3dimpressions_nagpur" className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition" > Instagram </a> <a href="https://maps.app.goo.gl/EWPxpmS1kW6T26Nd8?g_st=ipc" target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition" > 📍 Location </a> </div> </header>
+      <header className="px-6 py-12 border-b border-[#E8DFC6] bg-[#FAFAF8]"> {/* Logo + Brand */} <div className="flex items-center justify-center gap-4 mb-4"> <div className="flex items-center justify-center w-40 h-40 rounded-full border border-[#E8DFC6] bg-white shadow-sm"> <Image src={logo} alt="Roops 3D Impressions Logo" width={100} height={100} className="object-contain" priority /> </div> <h1 className="text-xl sm:text-xl font-semibold tracking-wide text-[#1F1F1F] leading-tight"> ROOPS 3D<br /> <span className="text-[#C9A24D]">Impressions</span> </h1> </div> {/* Tagline */} <p className="text-center text-sm text-[#8B7A44] tracking-wide"> Our small effort to save your memory. </p> {/* Divider */} <div className="mx-auto my-6 h-px w-24 bg-[#C9A24D]/40" /> {/* Action Buttons */} <div className="flex justify-center gap-3 flex-wrap"> <a href="https://wa.me/918600044482" className="px-6 py-2.5 rounded-full bg-[#1F1F1F] text-white text-sm font-medium hover:bg-[#C9A24D] transition" > WhatsApp </a> 
+      <div className="relative inline-block">
+      {/* Call Button */}
+      <button
+        onClick={() => setOpen(!open)}
+        className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition"
+      >
+        Call
+      </button>
+
+      {/* Dropdown */}
+      {open && (
+        <div className="absolute mt-2 w-48 rounded-lg border bg-white shadow-lg z-10">
+          <a
+            href="tel:+918600044482"
+            className="block px-4 py-2 hover:bg-[#F5E9C8]"
+          >
+            📞 8600044482
+          </a>
+          <a
+            href="tel:+918600044483"
+            className="block px-4 py-2 hover:bg-[#F5E9C8]"
+          >
+            📞 8600044483
+          </a>
+        </div>
+      )}
+    </div> 
+      <a href="https://instagram.com/roops3dimpressions_nagpur" className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition" > Instagram </a> <a href="https://maps.app.goo.gl/EWPxpmS1kW6T26Nd8?g_st=ipc" target="_blank" rel="noopener noreferrer" className="px-6 py-2.5 rounded-full border border-[#C9A24D] text-sm text-[#1F1F1F] hover:bg-[#F5E9C8] transition" > 📍 Location </a> </div> </header>
       {/* ================= MAIN ================= */}
       <main className="max-w-6xl mx-auto px-5 py-14">
 
