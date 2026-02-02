@@ -293,7 +293,7 @@ export default function DigitalCard() {
       title: "Couple Casting",
       images: [],
       pricing: [
-        { title: "Couple Hands", desc: "Both hands casting", price: "₹9,000" },
+        { title: "Couple Hands", desc: "Both hands casting", price: "₹8,000" },
       ],
     },
 
