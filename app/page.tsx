@@ -266,6 +266,8 @@ import { Button } from "@/components/ui/button"
 import { X } from "lucide-react"
 import { databases } from "@/lib/appwrite"
 import Image from "next/image"
+import { Query } from "appwrite"
+
 import logo from "@/public/logo.png"
 
 const DB_ID = "68c59c690038d7f7d1fc"
@@ -314,22 +316,42 @@ export default function DigitalCard() {
 
   /* ================= FETCH DYNAMIC IMAGES ================= */
   useEffect(() => {
-    const fetchImages = async () => {
-      const imagesByCategory: { [key: string]: string[] } = {}
-      const result = await databases.listDocuments(DB_ID, COLLECTION_ID)
+  const fetchImages = async () => {
+    const imagesByCategory: { [key: string]: string[] } = {}
+    let offset = 0
+    const limit = 25
+
+    while (true) {
+      const result = await databases.listDocuments(
+        DB_ID,
+        COLLECTION_ID,
+        [
+          Query.limit(limit),
+          Query.offset(offset),
+        ]
+      )
+
+      if (result.documents.length === 0) break
 
       result.documents.forEach((doc: any) => {
-        const key = doc.category?.toLowerCase()
-        if (!key) return
-        if (!imagesByCategory[key]) imagesByCategory[key] = []
+        const key = doc.category?.trim().toLowerCase()
+        if (!key || !doc.fileUrl) return
+
+        if (!imagesByCategory[key]) {
+          imagesByCategory[key] = []
+        }
+
         imagesByCategory[key].push(doc.fileUrl)
       })
 
-      setDynamicImages(imagesByCategory)
+      offset += limit
     }
 
-    fetchImages()
-  }, [])
+    setDynamicImages(imagesByCategory)
+  }
+
+  fetchImages()
+}, [])
 
   const getImagesByCategory = (key: string) => dynamicImages[key] || []
 
